@@ -2,7 +2,7 @@ from astropy.io import fits
 import matplotlib.pyplot as plt
 import numpy as np
 
-hdulist = fits.open('vesta_harps_comb_rv.fits')
+hdulist = fits.open('../solar_spectra/vesta_harps_comb_rv.fits')
 
 print(hdulist)
 hdu = hdulist[0]
@@ -14,10 +14,11 @@ size = hdu.header['NAXIS1']
 
 wavelength = crval + cdel * np.arange(size)
 
-print("hello")
+data_med = np.median(hdulist[0].data)
+
 
 plt.xlabel("wavelength")
-plt.ylabel("flux")
+plt.ylabel("norm. flux")
 
-plt.plot(wavelength, hdulist[0].data)
+plt.plot(wavelength, hdulist[0].data / data_med)
 plt.show()
