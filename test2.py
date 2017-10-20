@@ -14,6 +14,8 @@ size = hdu.header['NAXIS1']
 
 wavelength = crval + cdel * np.arange(size)
 
+print("hello")
+
 plt.xlabel("wavelength")
 plt.ylabel("flux")
 
